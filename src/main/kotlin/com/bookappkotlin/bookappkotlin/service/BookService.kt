@@ -9,7 +9,7 @@ interface BookService {
 
         fun createNewBook(createNewBookDto: CreateNewBookDto): Book
 
-        fun getAllBooks(title: String?, content: String?): List<Book> //TODO ANVÄNDA DTO ELLER EJ?
+        fun getAllBooks(title: String?, author: String?): List<Book> //TODO ANVÄNDA DTO ELLER EJ?
 
         fun updateBookById(id: Long, updateBookDto: UpdateBookDto) : Book?
 
