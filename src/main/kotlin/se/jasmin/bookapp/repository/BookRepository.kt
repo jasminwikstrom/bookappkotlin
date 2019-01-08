@@ -1,7 +1,7 @@
-package com.bookappkotlin.bookappkotlin.repository
+package se.jasmin.bookapp.repository
 
 
-import com.bookappkotlin.bookappkotlin.repository.entity.Book
+import se.jasmin.bookapp.repository.entity.Book
 import org.springframework.data.jpa.repository.JpaRepository
 import org.springframework.data.jpa.repository.Query
 import org.springframework.data.repository.query.Param

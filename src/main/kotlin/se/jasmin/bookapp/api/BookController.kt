@@ -1,15 +1,15 @@
-package com.bookappkotlin.bookappkotlin.controller
+package se.jasmin.bookapp.api
 
-import com.bookappkotlin.bookappkotlin.controller.dto.AddAuthorDto
-import com.bookappkotlin.bookappkotlin.controller.dto.AddCategoryDto
-import com.bookappkotlin.bookappkotlin.controller.dto.CreateNewBookDto
-import com.bookappkotlin.bookappkotlin.controller.dto.UpdateBookDto
-import com.bookappkotlin.bookappkotlin.repository.entity.Author
-import com.bookappkotlin.bookappkotlin.repository.entity.Book
-import com.bookappkotlin.bookappkotlin.repository.entity.Category
-import com.bookappkotlin.bookappkotlin.service.AuthorService
-import com.bookappkotlin.bookappkotlin.service.BookService
-import com.bookappkotlin.bookappkotlin.service.CategoryService
+import se.jasmin.bookapp.api.dto.AddAuthorDto
+import se.jasmin.bookapp.api.dto.AddCategoryDto
+import se.jasmin.bookapp.api.dto.CreateNewBookDto
+import se.jasmin.bookapp.api.dto.UpdateBookDto
+import se.jasmin.bookapp.repository.entity.Author
+import se.jasmin.bookapp.repository.entity.Book
+import se.jasmin.bookapp.repository.entity.Category
+import se.jasmin.bookapp.service.AuthorService
+import se.jasmin.bookapp.service.BookService
+import se.jasmin.bookapp.service.CategoryService
 import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.*
 import javax.validation.Valid
@@ -17,7 +17,7 @@ import javax.validation.Valid
 
 @RestController
 @RequestMapping("/books")
-class BookController(private val bookService: BookService, private val authorService: AuthorService, private val categoryService: CategoryService ) {
+class BookController(private val bookService: BookService, private val authorService: AuthorService, private val categoryService: CategoryService) {
 
     @GetMapping
     fun getAllBooks(
@@ -40,7 +40,6 @@ class BookController(private val bookService: BookService, private val authorSer
 
     @PostMapping("/categories")
     fun addCategory(@RequestBody addCategoryDto: AddCategoryDto): Category {
-
         return categoryService.addCategory(addCategoryDto)
     }
 

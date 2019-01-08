@@ -1,9 +1,14 @@
-package com.bookappkotlin.bookappkotlin.service
+package se.jasmin.bookapp.service
 
-import com.bookappkotlin.bookappkotlin.controller.dto.AddCategoryDto
-import com.bookappkotlin.bookappkotlin.repository.CategoryRepository
-import com.bookappkotlin.bookappkotlin.repository.entity.Category
+
 import org.springframework.stereotype.Service
+import se.jasmin.bookapp.api.dto.AddCategoryDto
+import se.jasmin.bookapp.repository.CategoryRepository
+import se.jasmin.bookapp.repository.entity.Category
+
+interface CategoryService {
+    fun addCategory(addCategoryDto: AddCategoryDto): Category
+}
 
 @Service
 class CategoryServiceImpl(private val categoryRepository: CategoryRepository) : CategoryService {
@@ -11,7 +16,6 @@ class CategoryServiceImpl(private val categoryRepository: CategoryRepository) : 
     override fun addCategory(addCategoryDto: AddCategoryDto): Category {
 
         val category = Category(text = addCategoryDto.text)
-
         return categoryRepository.save(category)
     }
 }

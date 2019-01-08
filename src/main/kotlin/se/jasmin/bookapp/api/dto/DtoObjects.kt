@@ -1,4 +1,4 @@
-package com.bookappkotlin.bookappkotlin.controller.dto
+package se.jasmin.bookapp.api.dto
 
 data class CreateNewBookDto(
         val title: String,

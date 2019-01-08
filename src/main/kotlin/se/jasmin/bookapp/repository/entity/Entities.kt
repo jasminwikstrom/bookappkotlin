@@ -1,4 +1,4 @@
-package com.bookappkotlin.bookappkotlin.repository.entity
+package se.jasmin.bookapp.repository.entity
 
 
 import javax.persistence.*

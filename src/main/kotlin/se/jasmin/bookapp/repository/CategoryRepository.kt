@@ -1,7 +1,7 @@
-package com.bookappkotlin.bookappkotlin.repository
+package se.jasmin.bookapp.repository
 
 
-import com.bookappkotlin.bookappkotlin.repository.entity.Category
+import se.jasmin.bookapp.repository.entity.Category
 import org.springframework.data.jpa.repository.JpaRepository
 import org.springframework.stereotype.Repository
 

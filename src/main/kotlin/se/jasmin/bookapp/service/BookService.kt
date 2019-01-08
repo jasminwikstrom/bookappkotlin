@@ -1,12 +1,19 @@
-package com.bookappkotlin.bookappkotlin.service
+package se.jasmin.bookapp.service
 
-import com.bookappkotlin.bookappkotlin.controller.dto.CreateNewBookDto
-import com.bookappkotlin.bookappkotlin.controller.dto.UpdateBookDto
-import com.bookappkotlin.bookappkotlin.repository.AuthorRepository
-import com.bookappkotlin.bookappkotlin.repository.BookRepository
-import com.bookappkotlin.bookappkotlin.repository.CategoryRepository
-import com.bookappkotlin.bookappkotlin.repository.entity.Book
 import org.springframework.stereotype.Service
+import se.jasmin.bookapp.api.dto.CreateNewBookDto
+import se.jasmin.bookapp.api.dto.UpdateBookDto
+import se.jasmin.bookapp.repository.AuthorRepository
+import se.jasmin.bookapp.repository.BookRepository
+import se.jasmin.bookapp.repository.CategoryRepository
+import se.jasmin.bookapp.repository.entity.Book
+
+interface BookService {
+    fun createNewBook(createNewBookDto: CreateNewBookDto): Book
+    fun getAllBooks(title: String?, author: String?): List<Book>
+    fun updateBookById(id: Long, updateBookDto: UpdateBookDto): Book?
+    fun deleteBookById(id: Long): String?
+}
 
 @Service
 class BookServiceImpl(
@@ -24,7 +31,7 @@ class BookServiceImpl(
         }.orElse(null)
     }
 
-    override fun deleteBookById(id: Long): String?{
+    override fun deleteBookById(id: Long): String? {
 
         val bookToDelete = bookRepository.findById(id)
 
@@ -35,14 +42,12 @@ class BookServiceImpl(
     }
 
     override fun getAllBooks(title: String?, author: String?): List<Book> {
-
-        return bookRepository.findByQuery(title = title,author = author)
+        return bookRepository.findByQuery(title = title, author = author)
     }
 
     override fun createNewBook(createNewBookDto: CreateNewBookDto): Book {
 
         val author = authorRepository.findById(createNewBookDto.authorId.toLong())
-
 
         if (author.isEmpty) {
             throw IllegalArgumentException("Author not found")
@@ -62,8 +67,9 @@ class BookServiceImpl(
                 category = foundCategory)
         return bookRepository.save(book)
     }
-
-
-
-
 }
+
+
+
+
+
