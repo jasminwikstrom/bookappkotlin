@@ -14,7 +14,7 @@ interface BookService {
         fun updateBookById(id: Long, updateBookDto: UpdateBookDto) : Book?
 
 
-        fun deleteBookById(id: Long ) // TODO ANVÄNDA DTO ELLER EJ?
+        fun deleteBookById(id: Long ): String?
 
 
 

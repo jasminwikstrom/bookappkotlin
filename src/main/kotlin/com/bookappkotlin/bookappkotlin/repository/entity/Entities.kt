@@ -1,9 +1,7 @@
 package com.bookappkotlin.bookappkotlin.repository.entity
 
 
-
 import javax.persistence.*
-
 
 @Entity
 @Table(name = "BOOK")
@@ -17,20 +15,18 @@ data class Book(
         @JoinColumn(name = "AUTHOR_ID")
         val author: Author,
 
-
         @ManyToOne
         @JoinColumn(name = "CATEGORY_ID")
-       var category: Category,
+        var category: Category,
 
         var title: String,
 
         @Column(name = "DESCRIPTION")
-        var description: String ,
+        var description: String,
 
         @Column(name = "YEAR")
         val year: String
 )
-
 
 
 @Entity
@@ -41,7 +37,6 @@ data class Category(
         @GeneratedValue(strategy = GenerationType.IDENTITY)
 
         val id: Long? = null,
-
 
         val text: String
 )

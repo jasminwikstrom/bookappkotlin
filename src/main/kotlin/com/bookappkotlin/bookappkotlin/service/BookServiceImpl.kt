@@ -14,9 +14,6 @@ class BookServiceImpl(
         private val authorRepository: AuthorRepository,
         private val categoryRepository: CategoryRepository) : BookService {
 
-
-
-
     override fun updateBookById(id: Long, updateBookDto: UpdateBookDto): Book? {
 
         val foundBook = bookRepository.findById(id)
@@ -27,14 +24,15 @@ class BookServiceImpl(
         }.orElse(null)
     }
 
+    override fun deleteBookById(id: Long): String?{
 
+        val bookToDelete = bookRepository.findById(id)
 
-
-
-    override fun deleteBookById(id: Long) {
-        bookRepository.deleteById(id)
+        return bookToDelete.map {
+            bookRepository.deleteById(it.id!!)
+            it.id.toString()
+        }.orElse(null)
     }
-
 
     override fun getAllBooks(title: String?, author: String?): List<Book> {
 
@@ -64,6 +62,8 @@ class BookServiceImpl(
                 category = foundCategory)
         return bookRepository.save(book)
     }
+
+
 
 
 }

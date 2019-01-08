@@ -32,12 +32,6 @@ class BookController(private val bookService: BookService, private val authorSer
             ResponseEntity.notFound().build()
     }
 
-    @PostMapping
-    fun createNewBook(@Valid @RequestBody createNewBookDto: CreateNewBookDto): Book {
-        return bookService.createNewBook(createNewBookDto)
-    }
-
-
     @PostMapping("/authors")
     fun addAuthor(@RequestBody addAuthorDto: AddAuthorDto): Author {
 
@@ -50,6 +44,11 @@ class BookController(private val bookService: BookService, private val authorSer
         return categoryService.addCategory(addCategoryDto)
     }
 
+    @PostMapping
+    fun createNewBook(@Valid @RequestBody createNewBookDto: CreateNewBookDto): Book {
+        return bookService.createNewBook(createNewBookDto)
+    }
+
     @PutMapping("/{id}")
     fun updateBookById(
             @PathVariable(value = "id") id: Long,
@@ -60,13 +59,10 @@ class BookController(private val bookService: BookService, private val authorSer
         return if (updatedBook != null) ResponseEntity.ok().body(updatedBook) else ResponseEntity.notFound().build()
     }
 
-
     @DeleteMapping("/{id}")
-    fun deleteBookById(@PathVariable("id") id: Long) {
-        bookService.deleteBookById(id)
+    fun deleteBookById(@PathVariable("id") id: Long): ResponseEntity<String> {
+        val deletedBookId = bookService.deleteBookById(id)
+
+        return if (deletedBookId != null) ResponseEntity.ok(deletedBookId) else ResponseEntity.notFound().build()
     }
-
-
-
-
 }
